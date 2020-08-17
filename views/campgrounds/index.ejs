@@ -1,0 +1,54 @@
+<%- include("../partials/header") %> <!--adding header--> <!--adding "../" to go one folder back-->
+ <!--<h1> this is campgrounds page!!</h1>-->
+ <!--usually the heading of our page should resides in the jumbotron
+  to do so -->
+  <!--we need to put every thing of .ejs file inside a div with class container -->
+<div class="container">
+
+  <header class="jumbotron">
+    <div class="container">  <!--to get rid of spacing problem while resizing the jumbotron-->
+      <h1> Welcome to the campgrounds!!</h1>
+      <!--adding paragraph-->
+      <p>world famous camping site </p>
+      <!--adding the  link button here -->
+      <a class="btn btn-primary btn-lg" href="/campgrounds/new" role="button">Add a new campground</a>
+    </div>
+    
+  </header>
+  <!--adding the style section will make sure that grid system is followed strictly-->
+<div class="row text-center" style="display: flex; flex-wrap: wrap;">
+  <!--looping through the array defined in the campgrounds url to access each data fro the array -->
+  <% for ( var i=0;i<campgrounds.length;i++){ %>
+    <!--<li> <%=campgrounds[i].name %>-<%=campgrounds[i].url%></li>   rather than having 
+   li tags we need to put every info of a particular campground on  a separate div --> 
+   <!--using div in the ejs file -->
+   <!-- is div me hi class=col-lg-x  waala section daalenge-->
+   <div class=" col-md-3 col -sm-6">
+      <div class="thumbnail">
+       
+         <img src="<%=campgrounds[i].url %>" width="500" height="500">
+         <!--this is above shown format for displaying the images from the app.js file on the user interface 
+         by using the above shown method-->
+         <!--uding div class="caption for the caption of each image-->
+         <div class="caption"> 
+             <h4> <%=campgrounds[i].name %></h4>
+         </div>
+         <!--adding a more info button on each campground with more info tag-->
+         <p> <!--NOTE: this is the method of obtaining id from the user -->
+           <a href="/campgrounds/<%=campgrounds[i]._id%> " class="btn btn-primary">more info</a>
+           <!--its very important to use id obtaining method in the exact same way as we are doing above-->
+         </p>
+      </div>
+     
+   </div>
+ <%  } %> 
+</div>
+
+
+
+
+
+
+<%- include("../partials/footer") %>
+</div>
+ <!--adding footer-->

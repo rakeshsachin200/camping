@@ -1,0 +1,44 @@
+<%- include("../partials/header") %>
+<div class="container">
+     <div class="row">
+        <h1 style="text-align: center;"> Create a new campground!!</h1>
+        <!--doing the inline styling here -->
+        <div  style="width:30%; margin: 30px auto;">
+        <form action="/campgrounds" method="POST" >
+            <!--now we need to create some spacing between the differnt inputs to 
+            do so we will do thois -->
+            <div class="form-group">
+                <input  class="form-control" type ="text" name ="name" placeholder="campground name " >
+                <!--these are the bootrap classes of our input type-->
+            </div>
+            <div class="form-group">
+                <input  class="form-control" type ="number" name ="price" placeholder="price" min="0.01" step="0.01" >
+                <!--these are the bootrap classes of our input type-->
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text"   name ="image" placeholder="imageurl">
+            </div> 
+            <div class="form-group">
+                <input  class="form-control" type ="text" name ="description" placeholder="description ">
+                <!--these are the bootrap classes of our input type-->
+            </div>
+           
+            <div class="form-group">
+                 <button class ="btn btn-lg btn-primary btn-block ">submit!!</button> <!--these are the bootstrap class of button-->
+            </div>
+             
+            
+         </form>
+       </div>
+     </div>
+   
+        
+
+    <div style="text-align: center;">
+        <a href="/campgrounds">GO BACK</a>
+        <!--ADDING A NEW  BACK BUTTON TO GO BACK TO THE CAMPGROUNDS PAGE-->
+    </div>
+  
+</div>
+
+<%- include("../partials/footer") %>

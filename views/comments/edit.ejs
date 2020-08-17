@@ -1,0 +1,30 @@
+<%- include("../partials/header") %>
+<div class="container">
+     <div class="row">
+        <h1 style="text-align: center;"> edit the comment</h1>
+        <!--doing the inline styling here -->
+        <div  style="width:30%; margin: 30px auto;">
+            <!-- EDIOTING ROUTE FOR COMMENT-->
+        <form action="/campgrounds/<%=campground_id%>/comments/<%=comment._id%>?_method=PUT" method="POST" >
+            <!--now we need to create some spacing between the differnt inputs to 
+            do so we will do thois -->
+            <div class="form-group">
+                <input  class="form-control" type ="text" name ="comment[text]" value="<%=comment.text%>" >
+                <!--these are the bootrap classes of our input type-->
+            </div>
+                 <button class ="btn btn-lg btn-primary btn-block ">submit!!</button> <!--these are the bootstrap class of button-->
+            </div>
+         </form>
+       </div>
+     </div>
+   
+        
+
+    <div style="text-align: center;">
+        <a href="/campgrounds">GO BACK</a>
+        <!--ADDING A NEW  BACK BUTTON TO GO BACK TO THE CAMPGROUNDS PAGE-->
+    </div>
+  
+</div>
+
+<%- include("../partials/footer") %>

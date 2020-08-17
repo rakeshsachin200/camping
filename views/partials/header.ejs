@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Yelpcamp</title>
+	<!--we are using bootrap in our every ejs file by simply using then in the header.ejs  section--> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+
+		  <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			  <span class="sr-only">Toggle navigation</span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">Yelpcamp</a>
+		  </div>
+			
+			<ul class="nav navbar-nav navbar-right">
+			 <% if(!currentUser){   %> <!--THIS WILL SHOW THAT USER IS NOT LOGGED IN -->
+				<li><a href="/login">Log in</a></li>
+				<li><a href="/register">Sign Up</a></li>
+		<%	 } else { %> <!--THIS WILL SHOW THAT USER  IS LOGGED IN-->
+			<li><a href="#">signed in as <%=currentUser.username%></a></li> <!--to show signed in as someone we do this -->
+			<!--we can make this a link to profile page of signed in user by adding profile link-->
+			<li><a href="/logout">Log out</a></li>
+			<% } %>
+			  
+			
+			</ul>
+		  </div>
+		</div>
+	  </nav>
+	  <!--we will put everything in the bootstrap class like this-->
+	  <div class="container">
+		  <!--we need to show one of the red alert or success alert tp do so we will-->
+		  <% if (error && error.length>0) { %>
+			<div class="alert alert-danger" role="alert">
+				<!--adding the flash message on header template -->
+			   <h1><%=error%></h1>
+			   <!--message is not defined here so we define this globally in app.js-->
+			</div>
+		 <% } %>
+		 <% if ( success && success.length>0) { %>
+          <div class="alert alert-success" role="alert">
+			<!--adding the flash message on header template -->
+		   <h1><%=success%></h1>
+		   <!--message is not defined here so we define this globally in app.js-->
+		</div>
+		<% } %>
+	  </div>
+	 
+		 

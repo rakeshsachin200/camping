@@ -1,0 +1,78 @@
+<%- include("../partials/header") %> 
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <!--assigning three part to side bar -->
+      <p class="lead">Yelpcamp</p>
+      <div class="list-group">
+        <li class="list-group-item active">Info 1</li>
+        <li class="list-group-item">Info 2</li>
+        <li class="list-group-item">Info 3</li>
+      
+      </div>
+    </div>
+    <!--the remaoioning 9 parts of the row goes to this section-->
+    <div class="col-md-9">
+      <div class="thumbnail"> <!--putting show content inside this class -->
+        <img class="img-responsive" src="<%=campground.url%>" width="500" height="500">  
+        <!--adding caption to our image in the show page-->
+        <div class="caption-full">
+          <h4 class="pull-right"><%=campground.price%>$/night<!--thisswill be  comming from the database eventually--></h4>
+          <h4><a><%=campground.name%></a></h4> <!--we will add link further -->
+          <p><%=campground.description%></p>
+          <!--we will display the info about who created the particular campground -->
+          <p>Created by <em><%=campground.author.username%></em> </p>
+          <!-- HIDING THE BUTTONS IF USER IS NOT LOGGED IN-->
+          <!--we dont have access to req.user rather we have access to current user -->
+          <!--this will be run only if any user is signed in-->
+          <% if( currentUser && campground.author.id.equals(currentUser._id)) { %>
+            <a class= "btn btn-warning" href="/campgrounds/<%=campground._id%>/edit"> Edit</a>
+            <form id="delete" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+              <button class= "btn btn-danger">Delete</button> 
+          <%} %>
+         
+      </form>
+        </div>
+      </div>
+      <!--here we will add div class="well in order to loop through all the comments of user -->
+      <div class="well">
+        <!--adding ADD COMMENT BUTTON-->
+        <div class="text-right">
+          <a  class="btn btn-success"href="/campgrounds/<%=campground._id%>/comments/new">Add a new comment</a>
+        </div>
+        
+        <hr>
+        <!--Making a separate row for each comment-->
+        <%campground.comments.forEach(function(comment){ %>
+          <div class="row">
+            <div class="col-md-12">
+              <strong><%=comment.author.username%></strong> <!--to display username of person logged in-->
+              <span class="pull-right">10 days ago</span>
+              <p>
+                <%=comment.text%>
+              </p>
+              <!--add a button for editing comments-->
+              <!--letting only the user who owns the comment see edit and delete buttons -->
+              <% if( currentUser && comment.author.id.equals(currentUser._id)) { %>
+              <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit" class="btn btn-xs btn-warning">
+                Edit comment
+              </a>
+              <form id="delete" action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                <button class= "btn btn-xs btn-danger">Delete</button> 
+                <%} %>
+            </div>
+          </div>
+         
+            <!--this is the way of retrieving all the comment from the comment section-->
+      <%}); %>
+
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<%- include("../partials/footer") %> 
